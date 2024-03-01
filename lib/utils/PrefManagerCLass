@@ -1,0 +1,118 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
+class PrefManager {
+  final String strUniversityId = "strUniversityId";
+  final String strFacaltyId = "strFacaltyId";
+  final String strUserId = "strUserId";
+  final String level = "level";
+  final String isFastTime = "isFastTime";
+  final String isAdmin = "isAdmin";
+  final String isLoggedIn = "isLoggedIn";
+  final String isEmail = "isEmail";
+  final String hospitalID = "hospitalID";
+  final String lat = "lat";
+  final String lng = "lng";
+  final String darkMode = "darkMode";
+  static const THEME_STATUS = "THEMESTATUS";
+  static const THEME_MODE = "THEMMODE";
+
+  Future<void> setUserId(String strUserId) async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setString(this.strUserId, strUserId);
+  }
+
+  Future<String?> getUserId() async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    return _prefs.getString(this.strUserId) ?? null;
+  }
+
+  Future<void> setLevel(int level) async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setInt(this.level, level);
+  }
+
+  Future<int?> getLevel() async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    return _prefs.getInt(this.level) ?? null;
+  }
+  
+  Future<void> isDarkmode(bool isDArk) async{
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setBool(this.darkMode,isDArk);
+  }
+
+  Future<bool> getThemeMode() async{
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+   return  _prefs.getBool(this.darkMode) ?? false;
+  }
+
+  Future<void> setHospitalID(String hospitalID) async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setString(this.hospitalID, hospitalID);
+  }
+
+  Future<String?> getHospitalID() async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    return _prefs.getString(this.hospitalID) ?? null;
+  }
+
+  Future<void> setIsFastTime(bool isFastTime) async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setBool(this.isFastTime, isFastTime);
+  }
+
+  Future<void> setIsEmail(bool isEmail) async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setBool(this.isEmail, isEmail);
+  }
+
+  Future<bool> IsEmail() async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    return _prefs.getBool(this.isEmail) ?? true;
+  }
+
+  Future<bool> IsFastTime() async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    return _prefs.getBool(this.isFastTime) ?? true;
+  }
+
+  Future<void> setIsAdmin(bool isAdmin) async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setBool(this.isAdmin, isAdmin);
+  }
+
+  Future<bool> IsAdmin() async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    return _prefs.getBool(this.isAdmin) ?? false;
+  }
+
+  Future<void> setLoggedIn(bool isLoggedIn) async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setBool(this.isLoggedIn, isLoggedIn);
+  }
+
+  Future<bool> IsLoggedIn() async {
+    final SharedPreferences _prefs = await SharedPreferences.getInstance();
+    return _prefs.getBool(this.isLoggedIn) ?? false;
+  }
+
+  setDarkTheme(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool(THEME_STATUS, value);
+  }
+
+  Future<bool> getTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(THEME_STATUS) ?? false;
+  }
+
+  setMode(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool(THEME_MODE, value);
+  }
+
+  Future<bool> getMode() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(THEME_MODE) ?? false;
+  }
+}
